@@ -35,8 +35,8 @@ The backend for this application is available on GitHub: [https://github.com/Roa
 
 1. Clone the repository:
    ```
-   git clone <your-frontend-repo-url>
-   cd frontend
+   git clone https://github.com/RoaaFouda/blogs-app-frontend.git
+   cd blogs-app-frontend
    ```
 
 2. Install dependencies:
