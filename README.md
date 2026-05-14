@@ -6,11 +6,11 @@ This is a React-based frontend application for a blogging platform. It allows us
 
 ## Deployment
 
-The application is deployed on Netlify. You can access the live version here: [https://very-cool-react-blogs-app.netlify.app/](https://very-cool-react-blogs-app.netlify.app/)
+The website is deployed on Netlify. You can access the live version here: [https://very-cool-react-blogs-app.netlify.app/](https://very-cool-react-blogs-app.netlify.app/)
 
 ## Backend
 
-The backend for this application is available on GitHub: [https://github.com/RoaaFouda/blogs-app-backend](https://github.com/RoaaFouda/blogs-app-backend)
+The backend for this website is available on GitHub: [https://github.com/RoaaFouda/blogs-app-backend](https://github.com/RoaaFouda/blogs-app-backend)
 
 ## Features
 
