@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const axiosInstance = axios.create({ baseURL: "https://blogs-app-backend-alpha.vercel.app/api/" });
+const axiosInstance = axios.create({ baseURL: "https://blogs-app-backend.roaafouda.deno.net/api/" });
 
 axiosInstance.interceptors.request.use((req) => {
   const token = localStorage.getItem("token");
