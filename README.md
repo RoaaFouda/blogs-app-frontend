@@ -26,7 +26,7 @@ The backend for this application is available on GitHub: [https://github.com/Roa
 ## Tech Stack
 
 - **Frontend**: React, Vite
-- **Styling**: CSS
+- **Styling**: Daisy UI & Tailwind
 - **HTTP Client**: Axios
 - **State Management**: React Context API
 - **Build Tool**: Vite
