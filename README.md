@@ -21,7 +21,7 @@ The backend for this application is available on GitHub: [https://github.com/Roa
 - **Responsive Navigation**: A navbar component for easy navigation across the app.
 - **State Management**: Uses React Context (UserProvider) to manage user state across the application.
 - **API Integration**: Axios is used for making HTTP requests to the backend API.
-- **Modern UI**: Styled with CSS for a clean and responsive user interface.
+- **Modern UI**: Styled with tailwind for a clean and responsive user interface.
 
 ## Tech Stack
 
