@@ -12,10 +12,9 @@ const schema = joi.object({
       scheme: ['http', 'https'],
       allowRelative: false,
     })
-    .pattern(/\.(jpg|jpeg|png|gif|webp|svg|bmp)(\?.*)?$/i)
+    .pattern(/(\?.*)?$/i)
     .required().messages({'string.empty': 'Image URL is required',
-      'string.uri': 'Please enter a valid URL',
-      'string.pattern.base': 'Image URL must point to a valid image file (jpg, jpeg, png, gif, webp, svg, or bmp)',
+      'string.uri': 'Please enter a valid URL or a placeholder image will be used',
       'any.required': 'Image URL is required',
     }),
   content: joi.string().min(20),
@@ -122,7 +121,11 @@ export default function BlogForm(props) {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-//console.log(user)
+
+  const handleImageErr = (e) => {
+      e.target.src="/placeholderimage.png"
+  }
+    //console.log(user)
   return (
     <div className="flex flex-col justify-center items-center min-h-screen px-4 sm:px-8 md:px-16 py-8  bg-slate-50">
       <div className="w-full sm:w-96 px-4 sm:px-0">
@@ -190,6 +193,13 @@ export default function BlogForm(props) {
               </label>
             )}
           </div>
+          <div className="text-mauve-500 text-sm">Please make sure that your image URL is valid or a placeholder image will be displayed &lt;3</div>
+          {formData.coverImage && <div>
+            <label htmlFor="coverPreview" className="label text-black">
+              <span className="label-text">Cover Preview</span>
+            </label>
+             <img onError={handleImageErr} src={formData.coverImage} alt="Blog Cover Image"/>
+          </div>}
           <div>
             <label htmlFor="content" className="label text-black">
               <span className="label-text">Content</span>

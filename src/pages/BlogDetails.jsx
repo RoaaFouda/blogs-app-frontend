@@ -60,9 +60,9 @@ export default function BlogDetails(props) {
             {/* Author */}
             <div className="flex items-center gap-4">
               <div className="avatar placeholder">
-                <div className="bg-gradient-to-br from-blue-400 to-purple-500 text-white rounded-full w-14">
-                  <span className="text-lg">
-                    {blog.user.username?.charAt(0).toUpperCase() || "A"}
+                <div className="bg-linear-to-br from-blue-400 to-purple-500 text-white rounded-full w-13 flex items-center justify-center">
+                  <span className="text-sm font-bold">
+                    {blog.user.username.charAt(0).toUpperCase()}
                   </span>
                 </div>
               </div>

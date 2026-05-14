@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import joi from "joi";
-import {toast} from 'react-toastify'
+import { toast } from "react-toastify";
 import axiosInstance from "../api/axios";
 import { useNavigate } from "react-router";
 import { UserContext } from "../providers/UserProvider";
@@ -16,7 +16,7 @@ const schema = joi.object({
 });
 
 export default function Login() {
-  const {fetchUser} = useContext(UserContext);
+  const { fetchUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
@@ -27,6 +27,8 @@ export default function Login() {
     username: null,
     password: null,
   });
+
+  const [loading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,24 +46,20 @@ export default function Login() {
       });
     } else {
       try {
-        const res = await axiosInstance.post(
-          `/auth/login/`,
-          value,
-        );
-
-        localStorage.setItem("token", res.data.data.token)
-        toast.success(`Welcome back, ${formData.username}`)
+        setIsLoading(true);
+        const res = await axiosInstance.post(`/auth/login/`, value);
+        setIsLoading(false);
+        localStorage.setItem("token", res.data.data.token);
+        toast.success(`Welcome back, ${formData.username}`);
         fetchUser();
         navigate("/");
       } catch (err) {
-        if(err.response?.status === 400)
-          toast.error("Invalid Credentials")
-        else 
-          toast.error("Something went wrong try again later!")
+        setIsLoading(false);
+        if (err.response?.status === 400) toast.error("Invalid Credentials");
+        else toast.error("Something went wrong try again later!");
       }
     }
-        setFormErrors(newErrors);
-    
+    setFormErrors(newErrors);
   };
 
   const handleChange = (e) => {
@@ -77,6 +75,7 @@ export default function Login() {
           <input
             value={formData.username}
             onChange={handleChange}
+            disabled={loading}
             name="username"
             id="username"
             type="text"
@@ -98,6 +97,7 @@ export default function Login() {
           <input
             value={formData.password}
             onChange={handleChange}
+            disabled={loading}
             name="password"
             id="password"
             type="password"
@@ -113,7 +113,15 @@ export default function Login() {
           )}
         </div>
 
-        <button className="btn btn-primary w-full">Submit</button>
+        <button
+          type="submit"
+          disabled={loading}
+          className={`btn btn-primary w-full ${
+            loading ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+        >
+          {loading ? "Processing..." : "Submit"}
+        </button>
       </form>
     </div>
   );

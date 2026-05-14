@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import joi from "joi";
 import axiosInstance from "../api/axios";
-import {toast} from 'react-toastify';
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import { UserContext } from "../providers/UserProvider";
 
@@ -13,11 +13,7 @@ const schema = joi.object({
     .regex(/^[a-zA-Z0-9_-]+$/)
     .required(),
   email: joi.string().email(),
-  password: joi
-    .string()
-    .min(6)
-    .max(20)
-    .required(),
+  password: joi.string().min(6).max(20).required(),
   confirmPassword: joi
     .string()
     .min(6)
@@ -30,8 +26,8 @@ const schema = joi.object({
 });
 
 export default function Register() {
-  const {fetchUser} = useContext(UserContext);
-  const navigate = useNavigate()
+  const { fetchUser } = useContext(UserContext);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -46,6 +42,8 @@ export default function Register() {
     confirmPassword: null,
   });
 
+  const [loading, setIsLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -56,9 +54,12 @@ export default function Register() {
       confirmPassword: null,
     };
 
-    const { value, error } = schema.validate({...formData}, {
-      abortEarly: false,
-    });
+    const { value, error } = schema.validate(
+      { ...formData },
+      {
+        abortEarly: false,
+      },
+    );
 
     if (error) {
       error.details.forEach((err) => {
@@ -66,20 +67,18 @@ export default function Register() {
       });
     } else {
       try {
-        const res = await axiosInstance.post(
-          `/auth/register/`,
-          value,
-        );
-
-        localStorage.setItem("token", res.data.data.token)
-        toast.success(`Hello, ${formData.username}`)
+        setIsLoading(true);
+        const res = await axiosInstance.post(`/auth/register/`, value);
+        setIsLoading(false);
+        localStorage.setItem("token", res.data.data.token);
+        toast.success(`Hello, ${formData.username}`);
         fetchUser();
         navigate("/");
       } catch (err) {
-        if(err.response?.status === 422)
-          toast.error("User already exists");
+        setIsLoading(false);
+        if (err.response?.status === 422) toast.error("User already exists");
         else {
-          toast.error("Something went wrong try again later!")
+          toast.error("Something went wrong try again later!");
         }
       }
     }
@@ -100,6 +99,7 @@ export default function Register() {
           <input
             value={formData.username}
             onChange={handleChange}
+            disabled={loading}
             name="username"
             id="username"
             type="text"
@@ -121,6 +121,7 @@ export default function Register() {
           <input
             value={formData.email}
             onChange={handleChange}
+            disabled={loading}
             name="email"
             id="email"
             type="email"
@@ -142,6 +143,7 @@ export default function Register() {
           <input
             value={formData.password}
             onChange={handleChange}
+            disabled={loading}
             name="password"
             id="password"
             type="password"
@@ -163,6 +165,7 @@ export default function Register() {
           <input
             value={formData.confirmPassword}
             onChange={handleChange}
+            disabled={loading}
             name="confirmPassword"
             id="confirmPassword"
             type="password"
@@ -178,7 +181,15 @@ export default function Register() {
           )}
         </div>
 
-        <button className="btn btn-primary w-full">Submit</button>
+        <button
+          type="submit"
+          disabled={loading}
+          className={`btn btn-primary w-full ${
+            loading ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+        >
+          {loading ? "Processing..." : "Submit"}
+        </button>
       </form>
     </div>
   );

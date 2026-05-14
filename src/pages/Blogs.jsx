@@ -96,9 +96,8 @@ export default function Blogs(props) {
                     )}
                   </div>
 
-                  {/* Actions Section - Grows to bottom */}
+                  {/* Actions Section */}
                   <div className="mt-auto space-y-4">
-                    {/* Edit/Delete buttons - Only for own posts */}
                     {user && user.username === blog.user.username && (
                       <div className="flex gap-2">
                         <button
