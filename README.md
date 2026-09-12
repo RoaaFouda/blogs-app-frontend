@@ -6,7 +6,7 @@ This is a React-based frontend application for a blogging platform. It allows us
 
 ## Deployment
 
-The application is deployed on Netlify. You can access the live version here: [https://very-cool-react-blogs-app.netlify.app/](https://very-cool-react-blogs-app.netlify.app/)
+The application is deployed on Netlify. You can access the live version here: [https://blogs-app-frontend-seven.vercel.app/](https://very-cool-react-blogs-app.netlify.app/)
 
 ## Backend
 
