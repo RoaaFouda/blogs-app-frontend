@@ -6,11 +6,11 @@ This is a React-based frontend application for a blogging platform. It allows us
 
 ## Deployment
 
-The application is deployed on Netlify. You can access the live version here: [https://blogs-app-frontend-seven.vercel.app/](https://very-cool-react-blogs-app.netlify.app/)
+The application is deployed on Vercel. You can access the live version here: [https://blogs-app-frontend-seven.vercel.app/](https://very-cool-react-blogs-app.netlify.app/)
 
 ## Backend
 
-The backend for this application is available on GitHub: [https://github.com/RoaaFouda/blogs-app-backend](https://github.com/RoaaFouda/blogs-app-backend)
+The backend for this website is available on GitHub: [https://github.com/RoaaFouda/blogs-app-backend](https://github.com/RoaaFouda/blogs-app-backend)
 
 ## Features
 
@@ -21,12 +21,12 @@ The backend for this application is available on GitHub: [https://github.com/Roa
 - **Responsive Navigation**: A navbar component for easy navigation across the app.
 - **State Management**: Uses React Context (UserProvider) to manage user state across the application.
 - **API Integration**: Axios is used for making HTTP requests to the backend API.
-- **Modern UI**: Styled with CSS for a clean and responsive user interface.
+- **Modern UI**: Styled with tailwind for a clean and responsive user interface.
 
 ## Tech Stack
 
 - **Frontend**: React, Vite
-- **Styling**: CSS
+- **Styling**: Daisy UI & Tailwind
 - **HTTP Client**: Axios
 - **State Management**: React Context API
 - **Build Tool**: Vite
@@ -35,8 +35,8 @@ The backend for this application is available on GitHub: [https://github.com/Roa
 
 1. Clone the repository:
    ```
-   git clone <your-frontend-repo-url>
-   cd frontend
+   git clone https://github.com/RoaaFouda/blogs-app-frontend.git
+   cd blogs-app-frontend
    ```
 
 2. Install dependencies:
